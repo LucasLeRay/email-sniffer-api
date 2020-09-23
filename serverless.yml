@@ -1,0 +1,25 @@
+service: email-sniffer-api
+
+package:
+  individually: true
+
+plugins:
+  - serverless-bundle
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: eu-west-1
+  environment:
+    MAX_DEPTH: 3
+
+functions:
+  hello:
+    handler: handler.getEmails
+    events:
+      - http:
+          path: getEmails
+          method: get
