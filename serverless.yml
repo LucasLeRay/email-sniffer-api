@@ -11,15 +11,16 @@ plugins:
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: dev
+  stage: prod
   region: eu-west-1
   environment:
     MAX_DEPTH: 3
 
 functions:
-  hello:
-    handler: handler.getEmails
+  sniffer:
+    handler: functions/sniffer.handler
     events:
       - http:
-          path: getEmails
+          path: sniffer
+          cors: true
           method: get
