@@ -1,5 +1,5 @@
 {
   "pathParameters": {
-    "url": "https://lucas-le-ray.com"
+    "urls": ["https://lucas-le-ray.com", "https://zalando.com"]
   }
 }
