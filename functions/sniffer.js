@@ -3,20 +3,21 @@ import urlSniffer from '../helpers/urlSniffer'
 
 const { MAX_DEPTH } = process.env
 
+const instance = Math.random().toString().slice(2)
+
 // eslint-disable-next-line import/prefer-default-export
 export async function handler(event) {
-  const data = {}
-  const { urls } = event.pathParameters
+  console.time(`Sniffer: ${instance}`)
+  const url = event.queryStringParameters && event.queryStringParameters.url
+
+  if (!url) return failure({ message: 'No url provided.' })
 
   try {
-    await Promise.all(
-      urls.map(async (url) => {
-        data[url] = await urlSniffer(url, MAX_DEPTH)
-      }),
-    )
+    const data = await urlSniffer(url, MAX_DEPTH)
+
+    console.timeEnd(`Sniffer: ${instance}`)
+    return success(data)
   } catch (err) {
     return failure({ message: err.message })
   }
-
-  return success(data)
 }

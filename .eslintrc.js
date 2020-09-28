@@ -1,16 +1,13 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   parserOptions: {
     parser: 'babel-eslint',
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  extends: [
-    'airbnb-base',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['airbnb-base', 'plugin:prettier/recommended'],
   plugins: [],
 }
