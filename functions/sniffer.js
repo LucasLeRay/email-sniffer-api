@@ -13,7 +13,7 @@ export async function handler(event) {
   if (!url) return failure({ message: 'No url provided.' })
 
   try {
-    const data = await urlSniffer(url, MAX_DEPTH)
+    const data = await urlSniffer(url.split('/')[0], MAX_DEPTH)
 
     console.timeEnd(`Sniffer: ${instance}`)
     return success(data)

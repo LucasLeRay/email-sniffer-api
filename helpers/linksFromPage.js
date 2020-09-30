@@ -1,4 +1,5 @@
 import $ from 'cheerio'
+import getDomain from './getDomain'
 
 export default function linksFromPage(bodyHTML, url, browsedUrls = []) {
   const linkObjects = $('a', bodyHTML)
@@ -11,7 +12,8 @@ export default function linksFromPage(bodyHTML, url, browsedUrls = []) {
   links = links.map((link) => (link[0] === '/' ? `${url}${link}` : link))
   links = links.filter(
     (link) =>
-      link.includes(url) && !browsedUrls.includes(link.replace('/', '')),
+      link.replace(/^https?:\/\//i, '').includes(getDomain(url)) &&
+      !browsedUrls.includes(link.replace('/', '')),
   )
   links = [...new Set(links)]
   return links
