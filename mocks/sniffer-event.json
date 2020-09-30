@@ -1,5 +1,5 @@
 {
-  "pathParameters": {
-    "urls": ["https://lucas-le-ray.com", "https://zalando.com"]
+  "queryStringParameters": {
+    "url": "https://lucas-le-ray.com"
   }
 }
